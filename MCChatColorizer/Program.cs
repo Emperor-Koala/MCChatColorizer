@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -81,114 +82,99 @@ namespace MCChatColorizer
                 while ((line = sr.ReadLine()) != null)
                 {
                     outLine = "";
-                    foreach (string word in line.Split(' ')) {
-                        bool magic = false;
-                        if (word.StartsWith("&") || word.StartsWith("§"))
+                    foreach (string word in line.Split('§'))
+                    {
+                        Boolean magic = false;
+                        String tag = null;
+                        switch (word.ToCharArray()[0])
                         {
-                            switch (word.ToLower().ToCharArray()[1])
-                            {
-                                case '0':
-                                    openTags.Add("black");
-                                    outLine += "<black>";
-                                    break;
-                                case '1':
-                                    openTags.Add("darkblue");
-                                    outLine += "<darkblue>";
-                                    break;
-                                case '2':
-                                    openTags.Add("darkgreen");
-                                    outLine += "<darkgreen>";
-                                    break;
-                                case '3':
-                                    openTags.Add("darkaqua");
-                                    outLine += "<darkaqua>";
-                                    break;
-                                case '4':
-                                    openTags.Add("darkred");
-                                    outLine += "<darkred>";
-                                    break;
-                                case '5':
-                                    openTags.Add("darkpurple");
-                                    outLine += "<darkpurple>";
-                                    break;
-                                case '6':
-                                    openTags.Add("gold");
-                                    outLine += "<gold>";
-                                    break;
-                                case '7':
-                                    openTags.Add("gray");
-                                    outLine += "<gray>";
-                                    break;
-                                case '8':
-                                    openTags.Add("darkgray");
-                                    outLine += "<darkgray>";
-                                    break;
-                                case '9':
-                                    openTags.Add("blue");
-                                    outLine += "<blue>";
-                                    break;
-                                case 'a':
-                                    openTags.Add("green");
-                                    outLine += "<green>";
-                                    break;
-                                case 'b':
-                                    openTags.Add("aqua");
-                                    outLine += "<aqua>";
-                                    break;
-                                case 'c':
-                                    openTags.Add("red");
-                                    outLine += "<red>";
-                                    break;
-                                case 'd':
-                                    openTags.Add("lightpurple");
-                                    outLine += "<lightpurple>";
-                                    break;
-                                case 'e':
-                                    openTags.Add("yellow");
-                                    outLine += "<yellow>";
-                                    break;
-                                case 'f':
-                                    openTags.Add("white");
-                                    outLine += "<white>";
-                                    break;
-                                case 'k':
-                                    magic = true;
-                                    break;
-                                case 'l':
-                                    openTags.Add("b");
-                                    outLine += "<b>";
-                                    break;
-                                case 'm':
-                                    openTags.Add("del");
-                                    outLine += "<del>";
-                                    break;
-                                case 'n':
-                                    openTags.Add("u");
-                                    outLine += "<u>";
-                                    break;
-                                case 'o':
-                                    openTags.Add("i");
-                                    outLine += "<i>";
-                                    break;
-                                case 'r':
-                                    for (int index = openTags.Count() - 1; index >= 0; index--)
-                                    {
-                                        outLine += "</" + openTags.ElementAt(index) + ">";
-                                    }
-                                    openTags.Clear();
-                                    break;
-                                default:
-                                    break;
-                            }
-                            if (magic)
-                                outLine += word.Substring(3);
-                            else
-                                outLine += word.Substring(2);
+                            case '0':
+                                tag = "black";
+                                break;
+                            case '1':
+                                tag = "darkblue";
+                                break;
+                            case '2':
+                                tag = "darkgreen";
+                                break;
+                            case '3':
+                                tag = "darkaqua";
+                                break;
+                            case '4':
+                                tag = "darkred";
+                                break;
+                            case '5':
+                                tag = "darkpurple";
+                                break;
+                            case '6':
+                                tag = "gold";
+                                break;
+                            case '7':
+                                tag = "gray";
+                                break;
+                            case '8':
+                                tag = "darkgray";
+                                break;
+                            case '9':
+                                tag = "blue";
+                                break;
+                            case 'a':
+                                tag = "green";
+                                break;
+                            case 'b':
+                                tag = "aqua";
+                                break;
+                            case 'c':
+                                tag = "red";
+                                break;
+                            case 'd':
+                                tag = "lightpurple";
+                                break;
+                            case 'e':
+                                tag = "yellow";
+                                break;
+                            case 'f':
+                                tag = "white";
+                                break;
+                            case 'k':
+                                magic = true; //TODO add span with class "magic" and use js to handle it
+                                break;
+                            case 'l':
+                                tag = "b";
+                                break;
+                            case 'm':
+                                tag = "del";
+                                break;
+                            case 'n':
+                                tag = "u";
+                                break;
+                            case 'o':
+                                tag = "i";
+                                break;
+                            case 'r':
+                                for (int index = openTags.Count() - 1; index >= 0; index--)
+                                {
+                                    outLine += "</" + openTags.ElementAt(index) + ">";
+                                }
+                                openTags.Clear();
+                                break;
+                            default:
+                                break;
                         }
-                        else
-                            outLine += word;
 
-                        outLine += " ";
+                        if (tag == null)
+                        {
+                            if (!magic)
+                                if (word.StartsWith("r"))
+                                    outLine += word.Substring(1);
+                                else
+                                    outLine += word;
+                        } 
+                        else
+                        {
+                            openTags.Add(tag);
+                            outLine += $"<{tag}>{word.Substring(1)}";
+                        }
                     }
                     for (int index = openTags.Count() - 1; index >= 0; index--)
                     {
