@@ -1,0 +1,9 @@
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\bin\Release\MCChatColorizer.exe.config
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\bin\Release\MCChatColorizer.exe
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\bin\Release\MCChatColorizer.pdb
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.Form1.resources
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.Properties.Resources.resources
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.csproj.GenerateResource.cache
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.csproj.CoreCompileInputs.cache
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.exe
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.pdb
