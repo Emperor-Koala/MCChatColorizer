@@ -54,8 +54,9 @@ namespace MCChatColorizer
                 output.WriteLine("<html>");
                 output.WriteLine("<head>");
                 output.WriteLine("<title>Colorized ChatLog</title>");
+                output.WriteLine("<link href=\"https://fonts.googleapis.com/css2?family=VT323&display=swap\" rel=\"stylesheet\">");
                 output.WriteLine("<style>");
-                output.WriteLine("body {\nfont-family: \"Comic Sans MS\", Arial, sans-serif;\n}");
+                output.WriteLine("body {\nfont-family: 'VT323', monospace;\n}");
                 output.WriteLine("black {\ncolor: #000;\n}");
                 output.WriteLine("white {\ncolor: #fff;\n}");
                 output.WriteLine("darkred {\ncolor: #700;\n}");
@@ -73,6 +74,7 @@ namespace MCChatColorizer
                 output.WriteLine("gray {\ncolor: #aaa;\n}");
                 output.WriteLine("darkgray {\ncolor: #555;\n}");
                 output.WriteLine("</style>");
+                output.WriteLine("<script> setInterval(function() { var elems = document.getElementsByClassName('magic'); for (var i = 0; i < elems.length; i++) { elems[i].innerHTML = String.fromCharCode(97+Math.floor(Math.random() * 26)) }}, 50); </script>");
                 output.WriteLine("</head>");
                 output.WriteLine("<body>");
                 
@@ -165,10 +167,16 @@ namespace MCChatColorizer
                         if (tag == null)
                         {
                             if (!magic)
+                            {
                                 if (word.StartsWith("r"))
                                     outLine += word.Substring(1);
                                 else
                                     outLine += word;
+                            }
+                            else
+                            {
+                                outLine += "<span class=\"magic\"></span>";
+                            }
                         } 
                         else
                         {
