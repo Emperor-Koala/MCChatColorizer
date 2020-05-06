@@ -7,3 +7,4 @@ C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCCha
 C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.csproj.CoreCompileInputs.cache
 C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.exe
 C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.pdb
+C:\Users\mattchri\personalproj\MCChatColorizer\MCChatColorizer\obj\Release\MCChatColorizer.csprojAssemblyReference.cache

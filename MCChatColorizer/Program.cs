@@ -74,7 +74,7 @@ namespace MCChatColorizer
                 output.WriteLine("gray {\ncolor: #aaa;\n}");
                 output.WriteLine("darkgray {\ncolor: #555;\n}");
                 output.WriteLine("</style>");
-                output.WriteLine("<script> setInterval(function() { var elems = document.getElementsByClassName('magic'); for (var i = 0; i < elems.length; i++) { elems[i].innerHTML = String.fromCharCode(97+Math.floor(Math.random() * 26)) }}, 50); </script>");
+                output.WriteLine("<script> setInterval(function() { var elems = document.getElementsByClassName('magic'); for (var i = 0; i < elems.length; i++) { elems[i].innerHTML = String.fromCharCode(33+Math.floor(Math.random() * 94)) }}, 50); </script>");
                 output.WriteLine("</head>");
                 output.WriteLine("<body>");
                 
